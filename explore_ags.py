@@ -30,11 +30,17 @@ def ags_fields(ags_file_path):
 
         previous = h
 
+    #print
+    #print key_list
+    #print
+
     user_index = key_list.index('USER')
     user = key_list[user_index + 1]
 
     password_index = key_list.index('PASSWORD')
     password = key_list[password_index + 3]
+    eq_index = password.find('=')
+    password = password[2:eq_index].encode('hex')
 
     resturl_index = key_list.index('RestUrl')
     resturl = key_list[resturl_index + 2]
@@ -45,11 +51,13 @@ def ags_fields(ags_file_path):
     rsaurl_index = key_list.index('RsaUrl')
     rsaurl = key_list[rsaurl_index + 2]
 
+    print "file: %s" % ags_file_path
     print "user: %s" % user
     print "password: %s" % password
     print "rest url: %s" % resturl
     print "rest url: %s" % tokenurl
     print "rest url: %s" % rsaurl
+    print
 
     mm.close()
     ags_file.close()
